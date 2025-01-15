@@ -33,6 +33,7 @@ public class SceneScrolling : MonoBehaviour
 #endif
     }
 
+    //Прокрутка для десктопа
     private void HandleMouseInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -53,6 +54,7 @@ public class SceneScrolling : MonoBehaviour
         }
     }
 
+    //Прокрутка для телефона
     private void HandleTouchInput()
     {
         if (Input.touchCount > 0)

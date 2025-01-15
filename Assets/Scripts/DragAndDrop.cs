@@ -85,14 +85,7 @@ public class DragAndDrop : MonoBehaviour
         }
     }
 
-    private Vector3 GetMouseWorldPosition()
-    {
-        Vector3 mouseScreenPosition = Input.mousePosition;
-        mouseScreenPosition.z = 10;
-
-        return mainCamera.ScreenToWorldPoint(mouseScreenPosition);
-    }
-
+    //Привязка объекта к месту
     private void SnapToPlace()
     {
         Collider2D placeCollider = Physics2D.OverlapCircle(transform.position, 0.8f, LayerMask.GetMask("Place"));
@@ -103,6 +96,7 @@ public class DragAndDrop : MonoBehaviour
         Vector3 clampedPosition;
         Vector3 targetPosition;
 
+        //Определение места привязки
         if (placeCollider.CompareTag("Place"))
         {
             Vector3 shelfCenter = placeCollider.bounds.center;
@@ -125,6 +119,14 @@ public class DragAndDrop : MonoBehaviour
 
     }
 
+    private Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mouseScreenPosition = Input.mousePosition;
+        mouseScreenPosition.z = 10;
+
+        return mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+    }
+
     private Vector3 ClampToBounds(Collider2D shelfCollider, Vector3 targetPosition)
     {
         Bounds shelfBounds = shelfCollider.bounds;
@@ -135,6 +137,7 @@ public class DragAndDrop : MonoBehaviour
         return new Vector3(clampedX, clampedY, -1f);
     }
 
+    //Остановка объекта
     private void ResetVelocity()
     {
         rb.gravityScale = 0;
